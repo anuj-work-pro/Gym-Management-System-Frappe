@@ -1,4 +1,5 @@
 import frappe
+from frappe import _
 
 
 def execute(filters=None):
@@ -13,8 +14,8 @@ def execute(filters=None):
 
 def get_columns():
 	return [
-		{"label": "Month", "fieldname": "month", "fieldtype": "Data", "width": 150},
-		{"label": "Revenue", "fieldname": "revenue", "fieldtype": "Currency", "width": 150},
+		{"label": _("Month"), "fieldname": "month", "fieldtype": "Data", "width": 150},
+		{"label": _("Revenue"), "fieldname": "revenue", "fieldtype": "Currency", "width": 150},
 	]
 
 

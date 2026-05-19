@@ -1,4 +1,5 @@
 import frappe
+from frappe import _
 
 
 def execute(filters=None):
@@ -13,11 +14,11 @@ def execute(filters=None):
 
 def get_columns():
 	return [
-		{"label": "Date", "fieldname": "date", "fieldtype": "Date", "width": 120},
-		{"label": "Weight", "fieldname": "weight", "fieldtype": "Float", "width": 120},
-		{"label": "Calories Intake", "fieldname": "calories_intake", "fieldtype": "Float", "width": 150},
-		{"label": "Calories Burned", "fieldname": "calories_burnt", "fieldtype": "Float", "width": 150},
-		{"label": "BMI", "fieldname": "bmi", "fieldtype": "Float", "width": 100},
+		{"label": _("Date"), "fieldname": "date", "fieldtype": "Date", "width": 120},
+		{"label": _("Weight"), "fieldname": "weight", "fieldtype": "Float", "width": 120},
+		{"label": _("Calories Intake"), "fieldname": "calories_intake", "fieldtype": "Float", "width": 150},
+		{"label": _("Calories Burned"), "fieldname": "calories_burnt", "fieldtype": "Float", "width": 150},
+		{"label": _("BMI"), "fieldname": "bmi", "fieldtype": "Float", "width": 100},
 	]
 
 
