@@ -1,0 +1,60 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format: {machine_name}",
+ "creation": "2026-05-16 10:04:14.454893",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "column_break_yjee",
+  "machine_name",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "machine_name",
+   "fieldtype": "Select",
+   "label": "Machine name",
+   "options": "Treadmill\nExercise Bike\nElliptical\nStair Climber\nRowing Machine\nSpin Bike"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "working\nnot-working"
+  },
+  {
+   "fieldname": "column_break_yjee",
+   "fieldtype": "Column Break",
+   "options": "Treadmill\nExercise Bike\nElliptical\nStair Climber\nRowing Machine\nSpin Bike\nMassage Chair\nStretch Station"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-18 16:01:34.796415",
+ "modified_by": "Administrator",
+ "module": "Gym Management System",
+ "name": "Machine",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
