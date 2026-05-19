@@ -247,3 +247,30 @@ app_license = "unlicense"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+
+scheduler_events = {
+	"weekly": [
+		"gym_management_system.tasks.send_weekly_class_summary"
+	]
+}
+
+
+doctype_js = {
+	"Gym Membership": "public/js/gym_membership.js"
+	
+}
+
+override_whitelisted_methods = {
+	"frappe.client.get_count":
+	"gym_management_system.tasks.custom_get_count"
+}
+
+override_doctype_class = {
+    "Gym Membership":
+    "gym_management_system.overrides.custom_membership.CustomGymMembership"
+}
+
+error_page = {
+	"404": "gym_management_system/www/404.html"
+}
+

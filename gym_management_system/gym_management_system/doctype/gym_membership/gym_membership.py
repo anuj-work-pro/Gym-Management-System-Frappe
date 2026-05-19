@@ -1,0 +1,32 @@
+import frappe
+from frappe.model.document import Document
+from frappe.utils import add_days
+
+
+class GymMembership(Document):
+
+	def validate(self):
+
+		if self.membership_plan and self.start_date:
+
+			plan = frappe.get_doc(
+				"Membership Plan",
+				self.membership_plan
+			)
+
+			self.end_date = add_days(
+				self.start_date,
+				int(plan.duration)
+			)
+
+	def before_save(self):
+
+		if self.price <= 0:
+
+			frappe.throw(
+				"Amount must be greater than 0"
+			)
+
+	def on_submit(self):
+
+		self.status = "Active"
