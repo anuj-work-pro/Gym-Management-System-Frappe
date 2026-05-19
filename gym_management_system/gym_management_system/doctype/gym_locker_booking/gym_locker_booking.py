@@ -4,6 +4,7 @@
 import random
 
 import frappe
+from frappe import _
 from frappe.model.document import Document
 from frappe.utils import date_diff
 
@@ -16,7 +17,7 @@ class GymLockerBooking(Document):
 			total_days = date_diff(self.end_date, self.start_date)
 
 			if total_days <= 0:
-				frappe.throw("End Date must be after Start Date")
+				frappe.throw(_("End Date must be after Start Date"))
 
 			self.payable_amount = total_days * locker.locker_price
 

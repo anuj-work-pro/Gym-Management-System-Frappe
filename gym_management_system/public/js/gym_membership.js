@@ -3,3 +3,4 @@ frappe.ui.form.on("Gym Membership", {
 		frappe.msgprint("Thankyou for choosing us, kindly fill the form");
 	},
 });
+
