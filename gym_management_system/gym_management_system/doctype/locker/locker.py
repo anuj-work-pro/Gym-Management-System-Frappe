@@ -1,12 +1,9 @@
-from frappe.model.document import Document
 import frappe
+from frappe.model.document import Document
 
 
 class Locker(Document):
-
 	def validate(self):
-		
-
 		if self.locker_type == "small":
 			self.locker_price = 20
 

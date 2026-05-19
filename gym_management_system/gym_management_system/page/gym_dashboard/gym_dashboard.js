@@ -1,12 +1,11 @@
-frappe.pages['gym-dashboard'].on_page_load = function(wrapper) {
+frappe.pages["gym-dashboard"].on_page_load = function (wrapper) {
+	var page = frappe.ui.make_app_page({
+		parent: wrapper,
+		title: "Gym Dashboard",
+		single_column: true,
+	});
 
-    var page = frappe.ui.make_app_page({
-        parent: wrapper,
-        title: 'Gym Dashboard',
-        single_column: true
-    });
-
-    let html = `
+	let html = `
 
         <div class="row">
 
@@ -52,16 +51,16 @@ frappe.pages['gym-dashboard'].on_page_load = function(wrapper) {
 
         <div class="d-flex gap-2">
 
-        <button 
+        <button
         class="btn"
         id="refresh"
         style="background-color: black; color: white;"
-        >   
+        >
         Refresh Dashboard
-        </button> 
-        
+        </button>
 
-        <button 
+
+        <button
         class="btn"
         id="add-member"
         style="background-color: green ;  color: white;"
@@ -69,7 +68,7 @@ frappe.pages['gym-dashboard'].on_page_load = function(wrapper) {
         Add Member
         </button>
 
-        <button 
+        <button
         class="btn"
         id="create-membership"
         style="background-color: black ; color: white;"
@@ -80,55 +79,39 @@ frappe.pages['gym-dashboard'].on_page_load = function(wrapper) {
 
     `;
 
-    $(page.body).html(html);
+	$(page.body).html(html);
 
-    load_data();
+	load_data();
 
-    
-    $('#refresh').click(function() {
-        load_data();
-    });
+	$("#refresh").click(function () {
+		load_data();
+	});
 
-    $('#add-member').click(function() {
-        frappe.new_doc("Gym Member");
-    });
+	$("#add-member").click(function () {
+		frappe.new_doc("Gym Member");
+	});
 
-    $('#create-membership').click(function() {
-        frappe.new_doc("Gym Membership");
-    });
-
+	$("#create-membership").click(function () {
+		frappe.new_doc("Gym Membership");
+	});
 };
 
 function load_data() {
+	frappe.call({
+		method: "gym_management_system.gym_management_system.page.gym_dashboard.gym_dashboard.get_dashboard_data",
 
-    frappe.call({
+		callback: function (r) {
+			if (r.message) {
+				$("#members").text(r.message.total_members);
 
-        method: "gym_management_system.gym_management_system.page.gym_dashboard.gym_dashboard.get_dashboard_data",
+				$("#active-members").text(r.message.active_members);
 
-        callback: function(r) {
+				$("#trainers").text(r.message.trainers_available);
 
-            if (r.message) {
+				$("#revenue").text("₹" + r.message.revenue);
 
-                $('#members').text(
-                    r.message.total_members
-                );
-
-                $('#active-members').text(
-                    r.message.active_members
-                );
-
-                $('#trainers').text(
-                    r.message.trainers_available
-                );
-
-                $('#revenue').text(
-                    "₹" + r.message.revenue
-                );
-
-                $('#classes').text(
-                    r.message.booked_classes
-                );
-            }
-        }
-    });
+				$("#classes").text(r.message.booked_classes);
+			}
+		},
+	});
 }
