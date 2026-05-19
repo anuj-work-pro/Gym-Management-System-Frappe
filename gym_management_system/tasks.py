@@ -1,10 +1,8 @@
 import frappe
 
 
-
 def send_weekly_class_summary():
 
-	
 	members = frappe.get_all(
 		"Gym Member",
 		fields=["name", "email"]
@@ -12,7 +10,6 @@ def send_weekly_class_summary():
 
 	for member in members:
 
-		
 		bookings = frappe.get_all(
 			"Gym Class Booking",
 			filters={
@@ -24,48 +21,50 @@ def send_weekly_class_summary():
 			]
 		)
 
-		
 		if not bookings:
 			continue
 
-		
-		message = """
-		<h3>Weekly Gym Class Summary</h3>
-
-		<table border="1" cellpadding="5">
-			<tr>
-				<th>Class</th>
-				<th>Date</th>
-			</tr>
-		"""
+		message = "<h3>Weekly Gym Class Reminder</h3>"
 
 		for booking in bookings:
 
 			message += f"""
-			<tr>
-				<td>{booking.gym_class}</td>
-				<td>{booking.booking_date}</td>
-			</tr>
+			<p>
+			Class: {booking.gym_class}
+			<br>
+			Date: {booking.booking_date}
+			</p>
 			"""
 
-		message += "</table>"
-
-		
 		frappe.sendmail(
 			recipients=[member.email],
-			subject="Weekly Gym Class Summary",
+			subject="Weekly Gym Class Reminder",
 			message=message
 		)
 
 
+@frappe.whitelist()
+def send_summary_in_background():
+
+	frappe.enqueue(
+		"gym_management_system.tasks.send_weekly_class_summary",
+		queue="default",
+		timeout=300
+	)
+
+	return "Background Job Started"
 
 
 @frappe.whitelist()
-def custom_get_count(*args, **kwargs):
+def custom_logged_user():
 
-	return "Override Working"
+	return {
+		"user": frappe.session.user,
+		"message": "Custom Override Working"
+	}
 
 
-import frappe
 
 
+
+	

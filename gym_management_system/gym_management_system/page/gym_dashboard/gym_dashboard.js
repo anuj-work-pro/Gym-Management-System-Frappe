@@ -24,6 +24,7 @@ frappe.pages['gym-dashboard'].on_page_load = function(wrapper) {
                 </div>
             </div>
 
+
             <div class="col-md-2">
                 <div class="shadow p-4 rounded text-center">
                     <h4>Available Trainers</h4>

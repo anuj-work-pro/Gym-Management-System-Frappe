@@ -15,7 +15,8 @@
   "end_date",
   "price",
   "status",
-  "duration"
+  "duration",
+  "enrolling_date"
  ],
  "fields": [
   {
@@ -79,13 +80,18 @@
    "fieldname": "gym_new_name",
    "fieldtype": "Data",
    "label": "Gym New Name"
+  },
+  {
+   "fieldname": "enrolling_date",
+   "fieldtype": "Date",
+   "label": "Enrolling date"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-05-18 17:13:50.146750",
+ "modified": "2026-05-19 12:41:00.500033",
  "modified_by": "Administrator",
  "module": "Gym Management System",
  "name": "Gym Membership",

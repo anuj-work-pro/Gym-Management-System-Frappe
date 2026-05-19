@@ -8,5 +8,5 @@ class CustomGymMembership(GymMembership):
         super().validate()
         
 
-        # if self.price <= 0:
-        #     frappe.throw("Amount must be greater than 0")
+        if not self.enrolling_date:
+            frappe.throw("Kindly add Enrolling date")

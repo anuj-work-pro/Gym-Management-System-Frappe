@@ -249,8 +249,8 @@ app_license = "unlicense"
 
 
 scheduler_events = {
-	"weekly": [
-		"gym_management_system.tasks.send_weekly_class_summary"
+	"daily": [
+		"gym_management_system.tasks.send_summary_in_background"
 	]
 }
 
@@ -261,8 +261,8 @@ doctype_js = {
 }
 
 override_whitelisted_methods = {
-	"frappe.client.get_count":
-	"gym_management_system.tasks.custom_get_count"
+	"frappe.auth.get_logged_user":
+	"gym_management_system.tasks.custom_logged_user"
 }
 
 override_doctype_class = {

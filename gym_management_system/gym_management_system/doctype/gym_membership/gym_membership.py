@@ -7,6 +7,11 @@ class GymMembership(Document):
 
 	def validate(self):
 
+		self.set_end_date()
+		self.validate_price()
+
+	def set_end_date(self):
+
 		if self.membership_plan and self.start_date:
 
 			plan = frappe.get_doc(
@@ -19,7 +24,7 @@ class GymMembership(Document):
 				int(plan.duration)
 			)
 
-	def before_save(self):
+	def validate_price(self):
 
 		if self.price <= 0:
 
@@ -29,4 +34,4 @@ class GymMembership(Document):
 
 	def on_submit(self):
 
-		self.status = "Active"
+		self.status = "Active"   

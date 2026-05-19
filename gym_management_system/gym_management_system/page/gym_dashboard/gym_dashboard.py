@@ -7,16 +7,14 @@ def get_dashboard_data():
     total_members = frappe.db.count(
         "Gym Member"
     )
-
+   
     
     active_members = frappe.db.count(
-        "Gym Membership",
-        {
-            "status": "Active"
-        }
-    )
-
-    
+    "Gym Member",
+    {
+        "active": 1
+    }
+)
     trainers_available = frappe.db.count(
         "Gym Trainer",
         {
@@ -43,7 +41,7 @@ def get_dashboard_data():
         "total_members": total_members,
 
         "active_members": active_members,
-
+        
         "trainers_available": trainers_available,
 
         "revenue": revenue,
